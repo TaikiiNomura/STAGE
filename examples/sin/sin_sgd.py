@@ -175,6 +175,9 @@ def main():
 
     losses = train_model(args, model, x, y)
 
+    y_pred, _ = model.forward(x)
+
+    print("final loss:", model.loss(y_pred, y))
 
 if __name__ == "__main__":
     main()
