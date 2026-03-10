@@ -100,58 +100,6 @@ def main():
 
     xs, losses, grads = train_model(args, x, optimizer)
 
-    # plot 1: function curve and optimization trajectory
-    x_curve = np.linspace(-2.0, 10.0, 400)
-    y_curve = (x_curve - 3.0) ** 2
-
-    plt.figure(figsize=(8, 5))
-    plt.plot(x_curve, y_curve, label="f(x) = (x - 3)^2")
-
-    traj_x = np.array(xs)
-    traj_y = (traj_x - 3.0) ** 2
-    plt.plot(traj_x, traj_y, marker="o", label="optimization trajectory")
-
-    plt.xlabel("x")
-    plt.ylabel("f(x)")
-    plt.title("Quadratic Optimization Trajectory")
-    plt.legend()
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-
-    # plot 2: x over steps
-    plt.figure(figsize=(8, 5))
-    plt.plot(xs, label="x")
-    plt.axhline(y=3.0, linestyle="--", label="optimal x = 3")
-    plt.xlabel("Step")
-    plt.ylabel("x")
-    plt.title("Parameter Trajectory")
-    plt.legend()
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-
-    # plot 3: loss over steps
-    plt.figure(figsize=(8, 5))
-    plt.plot(losses, label="loss")
-    plt.xlabel("Step")
-    plt.ylabel("f(x)")
-    plt.title("Loss")
-    plt.legend()
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-
-    # plot 4: gradient over steps
-    plt.figure(figsize=(8, 5))
-    plt.plot(grads, label="gradient")
-    plt.axhline(y=0.0, linestyle="--", label="optimal grad = 0")
-    plt.xlabel("Step")
-    plt.ylabel("grad f(x)")
-    plt.title("Gradient")
-    plt.legend()
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-
-    plt.show()
-
 
 if __name__ == "__main__":
     main()

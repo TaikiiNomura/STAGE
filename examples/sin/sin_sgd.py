@@ -124,6 +124,14 @@ def main():
     )
 
     parser.add_argument(
+        "--seed",
+        type=int,
+        default=1,
+        metavar="S",
+        help="random seed (default: 1)",
+    )
+
+    parser.add_argument(
         "--tau",
         type=float,
         default=1.0,
@@ -167,32 +175,9 @@ def main():
 
     losses = train_model(args, model, x, y)
 
-    # 推論
     y_pred, _ = model.forward(x)
 
-    # plot approximation
-    plt.figure(figsize=(8, 5))
-    plt.plot(x, y, label="sin(x)")
-    plt.plot(x, y_pred, label="prediction")
-    plt.xlabel("x")
-    plt.ylabel("sin(x)")
-    plt.title("STAGE NumPy sin approximation")
-    plt.legend()
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-
-    # plot loss
-    plt.figure(figsize=(8, 5))
-    plt.plot(losses, label="train loss")
-    plt.legend()
-    plt.xlabel("epoch")
-    plt.ylabel("MSE loss")
-    plt.title("Training Loss")
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-
-    plt.show()
-
+    print("final loss:", model.loss(y_pred, y))
 
 if __name__ == "__main__":
     main()
